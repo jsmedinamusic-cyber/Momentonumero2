@@ -25,3 +25,8 @@ if (bloqueado) return;
 
 const usuario = document.getElementById("loginUsuario").value;
 const clave = document.getElementById("loginClave").value;
+
+if (usuarios[usuario] === clave) {
+    mensajeLogin.className = "ok";
+    mensajeLogin.innerHTML = "¡Bienvenido, " + usuario + "!";
+    intentos = 0;
