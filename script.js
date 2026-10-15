@@ -18,3 +18,10 @@ document.getElementById("irLogin").onclick = function () {
 formRegistro.classList.add("oculto");
 formLogin.classList.remove("oculto");
 };
+
+formLogin.onsubmit = function (enviar) {
+enviar.preventDefault();
+if (bloqueado) return;
+
+const usuario = document.getElementById("loginUsuario").value;
+const clave = document.getElementById("loginClave").value;
