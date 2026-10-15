@@ -19,6 +19,8 @@ formRegistro.classList.add("oculto");
 formLogin.classList.remove("oculto");
 };
 
+// inicio de sesion
+
 formLogin.onsubmit = function (enviar) {
 enviar.preventDefault();
 if (bloqueado) return;
@@ -30,7 +32,12 @@ if (usuarios[usuario] === clave) {
     mensajeLogin.className = "ok";
     mensajeLogin.innerHTML = "¡Bienvenido, " + usuario + "!";
     intentos = 0;
-    } else {
+    
+    setTimeout(function () {
+        window.location.href="dashboard.html";
+
+    }, 1500);
+} else {
     intentos++;
     if (intentos >= 3) {
     bloqueado = true;
@@ -41,5 +48,22 @@ if (usuarios[usuario] === clave) {
     mensajeLogin.className = "error";
     mensajeLogin.innerHTML = "Datos incorrectos. Intento " + intentos + " de 3.";
     }
+}
+};
+// Registrar usuario
+formRegistro.onsubmit = function (enviar) {
+enviar.preventDefault();
+
+const usuario = document.getElementById("regUsuario").value;
+const clave = document.getElementById("regClave").value;
+
+if (usuarios[usuario]) {
+    mensajeRegistro.className = "error";
+    mensajeRegistro.textContent = "Ese usuario ya existe.";
+} else {
+    usuarios[usuario] = clave;
+    mensajeRegistro.className = "ok";
+    mensajeRegistro.textContent = "Usuario registrado. Ya puedes iniciar sesión.";
+    formRegistro.reset();
 }
 };
